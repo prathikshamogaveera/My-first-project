@@ -15,7 +15,7 @@ class Settings:
     # LLM Settings
     # Supports Google Gemini API key
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "").strip()
-    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     
     # Allowed CORS Origins (React frontend dev server)
     CORS_ORIGINS: list = [

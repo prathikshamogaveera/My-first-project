@@ -192,7 +192,7 @@ async def generate_career_analysis(resume_text: str, target_role: str) -> Career
     # Google Gemini REST API endpoint
     endpoint_url = (
         f"https://generativelanguage.googleapis.com/v1beta/models/"
-        f"{settings.GEMINI_MODEL}:generateContent?key={api_key}"
+        f"{settings.GEMINI_MODEL}:generateContent"
     )
 
     request_payload = {
@@ -212,8 +212,11 @@ async def generate_career_analysis(resume_text: str, target_role: str) -> Career
     }
 
     try:
-        async with httpx.AsyncClient(timeout=60.0) as client:
-            response = await client.post(endpoint_url, json=request_payload)
+        async with httpx.AsyncClient(timeout=120.0) as client:
+            response = await client.post(endpoint_url,
+             json=request_payload,
+            headers={"x-goog-api-key":api_key}
+             )
 
         if response.status_code != 200:
             error_details = response.text
@@ -250,7 +253,8 @@ async def generate_career_analysis(resume_text: str, target_role: str) -> Career
             detail=f"AI model did not return valid JSON. Error: {str(jde)}"
         )
     except httpx.RequestError as req_err:
-        raise HTTPException(
-            status_code=504,
-            detail=f"Network error communicating with AI API: {str(req_err)}"
-        )
+            print("Gemini connection error:", repr(req_err))
+            raise HTTPException(
+                status_code=504,
+                detail=f"Network error communicating with AI API: {type(req_err).__name__}: {str(req_err)}"
+            )
