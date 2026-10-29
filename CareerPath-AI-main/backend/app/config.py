@@ -19,13 +19,14 @@ class Settings:
     
     # Allowed CORS Origins (React frontend dev server)
     CORS_ORIGINS: list = [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "https://career-path-ai-blond.vercel.app",
-        "https://career-path-ltc3sex1d-code-verse22.vercel.app",
-    ]
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://career-path-ai-blond.vercel.app",
+    "https://path-ai-blond.vercel.app",
+    "https://career-path-ltc3sex1d-code-verse22.vercel.app",
+]
     
     # Upload constraints
     MAX_FILE_SIZE_MB: int = 10
