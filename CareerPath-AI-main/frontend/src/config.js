@@ -7,7 +7,7 @@
  * VITE_API_BASE_URL=https://<your-service>.onrender.com
  */
 
-const rawApiUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const rawApiUrl = 'https://YOUR-SERVICE.onrender.com'/;
 
 // Remove any trailing slashes
 export const API_BASE_URL = rawApiUrl.replace(/\/+$/, '');
